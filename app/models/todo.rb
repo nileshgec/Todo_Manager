@@ -1,13 +1,15 @@
 require "active_record"
 
 class Todo < ActiveRecord::Base
-  def due_today?
-    due_date == Date.today
-  end
+  
 
   def to_pleasant_string
     is_completed = completed ? "[X]" : "[ ]"
     "#{id}. #{due_date.to_s(:long)}- #{todo_text} #{is_completed}"
+  end
+
+  def due_today?
+    due_date == Date.today
   end
 
   def to_displayable_string
@@ -47,4 +49,5 @@ class Todo < ActiveRecord::Base
     to_mark.save 
     to_mark
   end
+  
 end
