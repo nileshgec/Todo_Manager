@@ -42,7 +42,7 @@ class UsersController < ApplicationController
           response_text= "True"
           render plain: response_text
         else
-          response_text= "hi"
+          response_text= "False"
           render plain: response_text
         end
       end
