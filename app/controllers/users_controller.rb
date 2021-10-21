@@ -27,8 +27,6 @@ class UsersController < ApplicationController
         id = params[:id]
         user = User.find(id)
         render plain: user.to_pleasant_string
-        
-        #render plain: users.to_pleasant_string
     end
 
     def create
