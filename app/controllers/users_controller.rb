@@ -8,6 +8,21 @@ class UsersController < ApplicationController
       render plain: User.all.to_a
     end
 
+    def login
+      user = User.find_by(email: params[:email])
+      #response_text= "Hey ,your new user is created with the Name: "
+      if user.present? 
+        #&& user.authenticate(params[:password])
+        #session[:user_id] = user.id
+        response_text= "True"
+        render plain: response_text
+      else
+        response_text= "False"
+        render plain: response_text
+      end
+    end
+
+
     def show
         id = params[:id]
         user = User.find(id)
@@ -33,19 +48,7 @@ class UsersController < ApplicationController
     
 
    
-    def login
-        user = User.find_by(email: params[:email])
-        #response_text= "Hey ,your new user is created with the Name: "
-        if user.present? 
-          #&& user.authenticate(params[:password])
-          #session[:user_id] = user.id
-          response_text= "True"
-          render plain: response_text
-        else
-          response_text= "False"
-          render plain: response_text
-        end
-      end
+    
 
 
    
