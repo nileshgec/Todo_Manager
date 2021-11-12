@@ -1,14 +1,30 @@
+# todos_controller.rb
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
   
+
+
     def index
       render plain: User.all.to_a
     end
 
+    def login
+      user = User.find_by(email: params[:email])
+    
+      if user.present? 
+        response_text= "TRUE"
+        render plain: response_text
+      else
+        response_text= "FALSE"
+        render plain: response_text
+      end
+    end
+
+
     def show
         id = params[:id]
         user = User.find(id)
-       render plain: user.to_pleasant_string
+        render plain: user.to_pleasant_string
     end
 
     def create
@@ -25,16 +41,11 @@ class UsersController < ApplicationController
         render plain: response_text
     end
 
-    def login
-      user = User.find_by(email: params[:email])
-      if user && user.authenticate(params[:password])
-        session[:current_user_id] = user.id
-        redirect_to "/"
-      else
-        flash[:error] = "Invalid Credentials. Please try again!!"
-        redirect_to new_sessions_path
-      end
-    end
+    
 
-  end
+   
+    
 
+
+   
+end
